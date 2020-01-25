@@ -25,7 +25,7 @@ You should've already setup your own cluster, there are plenty of tutorials expl
 
 ## Walkthrough
 
-First we need to create a secret out of our docker configuration file for out private docker registry so the cluster can pull and run docker our images, run:
+First we need to create a secret out of our docker configuration file for out private docker registry so the cluster can pull and run our docker images, run the following commands:
 
 ```sh
 docker login
