@@ -65,8 +65,21 @@ first, let's modify the output of our application to `version 2` so we can notic
 
 So we deployed another service that points to 4 replicas of our application version 2. We can verifiy it by running: `kubectl get pods -w`. You should see that instead of 4 replicas we have now 8 pods. 4 pods under each service version.
 
-Even thought we deployed our green service that points to deployment version 2, we still didn't tell our loadbalancer to point the traffic to our new deployment, so we need to tell it to switch the traffic to `web-app-2` in service name section.
-Once done modifing let's apply the changes: `kubectl apply -f loadbalancer.yaml`.
-You should now see that our curl client session is being served from our new version.
-After we are 100% sure this version is good enough, we need to delete the previous deployment to save some resources, run: `kubectl delete -f blue.yaml`.
+Even thought we deployed our green service that points to deployment version 2, we still didn't tell our loadbalancer to point the traffic to our new deployment, so we need to tell it to switch the traffic to `web-app-2` in our `loadbalancer.yaml` file on `serviceName` section.
 
+Once done modifing let's apply the changes: 
+
+```sh
+kubectl apply -f loadbalancer.yaml
+```
+
+You should now see that our curl client session is being served from our new version.
+After we are 100% sure this version is good enough, we need to delete the previous deployment to save resources, to cleanup run: `kubectl delete -f blue.yaml`.
+
+## Cleanup
+
+Run:
+
+```sh
+kubectl delete pods,services,deployments --all
+```
