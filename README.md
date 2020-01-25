@@ -14,6 +14,7 @@ Private docker registry is needed to host the docker images.
 When I run `kubectl get nodes`, I get the following output:
 
 ```sh
+NAME         STATUS   ROLES    AGE     VERSION
 k4s-master   Ready    master   4d22h   v1.17.0+k3s.1
 k4s-node1    Ready    worker   4d21h   v1.17.0+k3s.1
 k4s-node2    Ready    worker   4d21h   v1.17.0+k3s.1
