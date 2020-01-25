@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-v2
+  labels:
+    app: web-app-v2
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web-app-v2
+  template:
+    metadata:
+      labels:
+        app: web-app-v2
+    spec:
+      containers:
+        - name: web-app-v2
+          image: account/test:2
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-v2
+spec:
+  selector:
+    app: web-app-v2
+  ports:
+    - port: 80
+      targetPort: 80
+---
